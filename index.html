@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title>Require JS to show product</title>
+        <link rel="Stylesheet" href="css/jqx.base.css" type="text/css" />
+        <link rel="Stylesheet" href="css/datatable.css" type="text/css" />
+        <script type="text/javascript" data-main="js/main" src="js/require.js"></script>
+            
+    </head>
+    <body>
+        <div>
+            <!-- Filter section --------->
+            <table border="0" cellspacing="5" cellpadding="5">
+                <tbody>
+                    <tr>
+                        <td>
+                            <select name="price_filter" id="price_filter">
+                                <option value='100-5000'>Choose Filter</option>
+                                <option value='100-1000'>$100-$1000</option>
+                                <option value='1000-2000'>$1000-$2000</option>
+                                <option value='2000-3000'>$1000-$3000</option>
+                                <option value='3000-4000'>$3000-$4000</option>
+                                <option value='4000-5000'>$4000-$5000</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="price_sort" id="price_sort">
+                                <option value="">Select Sort</option>
+                                <option value="asc">Price Low-High</option>
+                                <option value="desc">Price High-Low</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- product list section --------->
+            <table id="tbl_product">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>SKU</th>
+                        <th>Category</th>
+                        <th>Price($)</th>
+                        <th>Quantity</th>
+                     </tr>
+                </thead>
+                <tbody data-bind="foreach: productArray">
+                    <tr>
+	                 <td class='cls_prod'>
+	                     <img class="a_link" data-bind="attr: { 'src': image },value: $index() + 1" width="50" height="50">
+	                     <a class="a_link" data-bind="text: name,value: $index() + 1"></a>
+	                 </td>
+	                 <td data-bind="text: sku"></td>
+	                 <td data-bind="text: category"></td>
+	                 <td data-bind="text: price"></td>
+	                 <td><input type="number" name="qty" value="1000" min="1" max="1000"></td>
+	            </tr>
+		 </tbody>
+            </table>
+            
+             <!-- product details section to render in product.html--------->
+            <div data-bind="foreach: productArray" style='display:none;'>
+               <div data-bind="attr: { 'id': $index() + 1 }">
+                    <h2><a href="index.html">Back</a><h2>
+                    <h1 data-bind="text: name"></h1>
+		     <img data-bind="attr: { 'src': image }" width="500" height="500"><br>
+		     <h2>SKU:</h2><span data-bind="text: sku"></span><br>
+		     <h2>Product description:</h2><span data-bind="text: description"></span><br><br><br>
+		     Quantity:<input type="number"  min="1" max="1000" value="1000">
+		</div>
+            </div>
+            
+        </div>
+    </body>
+</html>
